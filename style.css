@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #000; /* Standard dark mode base */
+    color: white;
+    /* Prevent the whole page from scrolling; we only want the feed container to scroll */
+    overflow: hidden; 
+}
+
+.top-nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+}
+
+/* --- THE MAGIC SCROLL SNAP CONTAINER --- */
+.video-feed {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+/* Hide scrollbar for a cleaner look */
+.video-feed::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+.video-feed {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Individual Video Wrapping Box */
+.video-container {
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: start; /* Forces the scroll to lock here */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
+}
+
+.boago-video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Prevents black bars; fills the screen */
+    cursor: pointer;
+}
+
+/* Overlays (Sidebar and Info text) */
+.video-sidebar {
+    position: absolute;
+    right: 15px;
+    bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.action-btn:hover {
+    transform: scale(1.2);
+}
+
+.video-info {
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    width: calc(100% - 80px); /* Leave space so text doesn't overlap sidebar */
+}
+
+.video-info h3 {
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.video-info p {
+    font-size: 14px;
+    font-weight: 300;
+}
